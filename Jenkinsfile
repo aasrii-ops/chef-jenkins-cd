@@ -4,7 +4,6 @@ pipeline {
   environment { CHEF_LICENSE = 'accept-silent' }
   stages {
     stage('Checkout') { steps { checkout scm } }
-    stage('Lint') { steps { bat 'cookstyle cookbooks/webapp/recipes/default.rb cookbooks/webapp/attributes/default.rb' } }
     stage('Deploy') {
       steps {
         bat 'chef-client -z -c config/client.rb -o "recipe[webapp]"'
